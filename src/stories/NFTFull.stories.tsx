@@ -1,7 +1,7 @@
 import { Story, Meta } from "@storybook/react";
 import { NFTFullPage } from "../nft-full/NFTFullPage";
 import { MediaConfiguration } from "../context/MediaConfiguration";
-import { Networks } from "@zoralabs/nft-hooks";
+import { Networks } from "@artiva/nft-hooks";
 
 export default {
   title: "Renderer/NFTFull",
@@ -10,7 +10,7 @@ export default {
 
 const Template: Story<typeof NFTFullPage> = (args) => (
   <MediaConfiguration
-    networkId={(args as any).testnet ? Networks.RINKEBY : Networks.MAINNET}
+    networkId={(args as any).testnet ? Networks.POLYGON : Networks.MAINNET}
   >
     {/* @ts-ignore */}
     <NFTFullPage {...args} />
@@ -19,11 +19,8 @@ const Template: Story<typeof NFTFullPage> = (args) => (
 
 export const Image = Template.bind({});
 Image.args = {
-  id: "3366",
-  config: {
-    showPerpetual: false,
-  },
-  refreshInterval: 5000,
+  contract: "0x7ff45c41fe33a8745dd58341fe534eee83014e53",
+  edition: true,
 };
 
 export const Video = Template.bind({});

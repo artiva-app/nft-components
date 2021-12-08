@@ -1,5 +1,5 @@
 import { useState, useEffect, Fragment } from "react";
-import { useNFTContent } from "@zoralabs/nft-hooks";
+import { useNFTContent } from "@artiva/nft-hooks";
 
 import { useMediaContext } from "../context/useMediaContext";
 import type {

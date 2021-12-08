@@ -9,7 +9,7 @@ This component sets data state and settings for fetching NFT data.
 The recommended use of this component is to inject data for building
 custom display components that don't fit within the preset NFTPreview and NFTFullPage components.
 
-Initial data is used for server-side hydration. If there is no `initialData`, the required data will be fetched client-side by the `@zoralabs/nft-hooks` library.
+Initial data is used for server-side hydration. If there is no `initialData`, the required data will be fetched client-side by the `@artiva/nft-hooks` library.
 
 ```tsx
 type NFTDataProvider = {
@@ -34,7 +34,7 @@ import {
   NFTFullPage,
   FullComponents,
   NFTDataContext,
-} from "@zoralabs/nft-components";
+} from "@artiva/nft-components";
 
 const VerifyHash = () => {
   const { nft } = useContext(NFTDataContext);

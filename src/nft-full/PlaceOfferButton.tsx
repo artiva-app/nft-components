@@ -4,14 +4,17 @@ import { ZORA_SITE_URL_BASE } from "../constants/media-urls";
 import { useMediaContext } from "../context/useMediaContext";
 import { Button } from "../components/Button";
 import { NFTDataContext } from "../context/NFTDataContext";
-import { AuctionType } from "@zoralabs/nft-hooks";
+import { AuctionType } from "@artiva/nft-hooks";
 import type { StyleProps } from "../utils/StyleTypes";
 
 type PlaceOfferButtonProps = {
   allowOffer?: boolean;
 } & StyleProps;
 
-export const PlaceOfferButton = ({ allowOffer, className }: PlaceOfferButtonProps) => {
+export const PlaceOfferButton = ({
+  allowOffer,
+  className,
+}: PlaceOfferButtonProps) => {
   const { nft } = useContext(NFTDataContext);
   const { getString, getStyles } = useMediaContext();
 
@@ -31,10 +34,14 @@ export const PlaceOfferButton = ({ allowOffer, className }: PlaceOfferButtonProp
 
   function getBidURLParts() {
     const data = nft.data;
-    if (!data) {
+    if (!data || !("tokenId" in data.nft)) {
       return;
     }
-    if (data.pricing.auctionType !== AuctionType.RESERVE && data.nft.contract.knownContract !== 'zora') {
+    if (
+      data.pricing.auctionType !== AuctionType.RESERVE &&
+      "knownContract" in data.nft.contract &&
+      data.nft.contract.knownContract !== "zora"
+    ) {
       return;
     }
     return [
@@ -42,7 +49,9 @@ export const PlaceOfferButton = ({ allowOffer, className }: PlaceOfferButtonProp
       "collections",
       data.nft.contract.address,
       data.nft.tokenId,
-      data.pricing.auctionType === AuctionType.RESERVE ? "auction/bid" : "offer",
+      data.pricing.auctionType === AuctionType.RESERVE
+        ? "auction/bid"
+        : "offer",
     ];
   }
 

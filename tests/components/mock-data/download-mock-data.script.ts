@@ -1,5 +1,5 @@
 import { writeFileSync } from "fs";
-import { MediaFetchAgent, NetworkIDs, Networks } from "@zoralabs/nft-hooks";
+import { MediaFetchAgent, NetworkIDs, Networks } from "@artiva/nft-hooks";
 
 export const DownloadHooks = async (args: {
   fileName: string;

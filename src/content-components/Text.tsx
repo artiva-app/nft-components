@@ -1,4 +1,4 @@
-import { useNFTContent } from "@zoralabs/nft-hooks";
+import { useNFTContent } from "@artiva/nft-hooks";
 import { MediaLoader } from "./MediaLoader";
 import {
   RenderComponentType,
@@ -9,7 +9,7 @@ import {
 
 export const Text: RendererConfig = {
   getRenderingPreference: (request: RenderRequest) => {
-    if (request.media.content?.type === 'text/html') {
+    if (request.media.content?.type === "text/html") {
       return RenderingPreference.INVALID;
     }
     if (request.media.content?.type?.startsWith("text/plain")) {

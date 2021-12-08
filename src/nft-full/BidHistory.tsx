@@ -20,10 +20,15 @@ const formatDate = (timestamp: string) =>
   });
 
 type BidHistoryProps = {
+  edition?: boolean;
   showPerpetual?: boolean;
 } & StyleProps;
 
-export const BidHistory = ({ showPerpetual = true, className }: BidHistoryProps) => {
+export const BidHistory = ({
+  edition = false,
+  showPerpetual = true,
+  className,
+}: BidHistoryProps) => {
   const { nft } = useContext(NFTDataContext);
   const { getString, getStyles, style } = useMediaContext();
 
@@ -37,7 +42,9 @@ export const BidHistory = ({ showPerpetual = true, className }: BidHistoryProps)
       ? [data.pricing.reserve?.currentBid]
       : [];
     const eventsList = [
-      ...(showPerpetual ? data.pricing.perpetual.bids : []),
+      ...(showPerpetual && data.pricing.perpetual
+        ? data.pricing.perpetual.bids
+        : []),
       ...(data.pricing.reserve?.previousBids || []),
       ...currentBid,
     ].map((bid) => ({
@@ -82,7 +89,12 @@ export const BidHistory = ({ showPerpetual = true, className }: BidHistoryProps)
       });
     }
 
-    if ("zoraNFT" in data && data.zoraNFT && data.zoraNFT.createdAtTimestamp && !("zoraIndexerResponse" in data)) {
+    if (
+      "zoraNFT" in data &&
+      data.zoraNFT &&
+      data.zoraNFT.createdAtTimestamp &&
+      !("zoraIndexerResponse" in data)
+    ) {
       eventsList.push({
         activityDescription: getString("BID_HISTORY_MINTED"),
         pricing: <Fragment />,
@@ -117,6 +129,16 @@ export const BidHistory = ({ showPerpetual = true, className }: BidHistoryProps)
       });
     }
 
+    if (edition && data.nft.creator) {
+      eventsList.push({
+        activityDescription: getString("BID_HISTORY_MINTED"),
+        pricing: <Fragment />,
+        actor: data.nft.creator,
+        createdAt: null,
+        transactionHash: null,
+      });
+    }
+
     return eventsList
       .sort((bidA, bidB) => (bidA.createdAt > bidB.createdAt ? -1 : 1))
       .map((bidItem) => (
@@ -126,8 +148,11 @@ export const BidHistory = ({ showPerpetual = true, className }: BidHistoryProps)
         >
           <div {...getStyles("fullPageHistoryItemDescription")}>
             <div {...getStyles("fullPageHistoryItemDescriptionCopy")}>
-              <AddressView address={bidItem.actor} />&nbsp;
-              <span {...getStyles("pricingAmount")}>{bidItem.activityDescription} {bidItem.pricing}</span>
+              <AddressView address={bidItem.actor} />
+              &nbsp;
+              <span {...getStyles("pricingAmount")}>
+                {bidItem.activityDescription} {bidItem.pricing}
+              </span>
             </div>
             {bidItem.transactionHash && style.theme.showTxnLinks && (
               <a

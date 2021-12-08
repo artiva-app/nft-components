@@ -14,12 +14,14 @@ import {
 } from "../context/NFTDataProvider";
 import { useA11yIdPrefix } from "../utils/useA11yIdPrefix";
 import type { StyleProps } from "../utils/StyleTypes";
+import { EditionInfo } from "./EditionInfo";
 
 type NFTFullPageProps = Omit<NFTDataProviderProps, "children"> & {
   children?: React.ReactNode;
   config?: {
     allowOffer?: boolean;
     showPerpetual?: boolean;
+    edition?: boolean;
   };
 } & StyleProps;
 
@@ -33,6 +35,7 @@ export const NFTFullPage = ({
   const { getStyles, style } = useMediaContext();
   const allowOffer = config?.allowOffer;
   const showPerpetual = config?.showPerpetual;
+  const edition = wrapperProps?.edition;
 
   const getChildren = () => {
     if (children) {
@@ -47,9 +50,14 @@ export const NFTFullPage = ({
           <MediaInfo a11yIdPrefix={a11yIdPrefix} />
           <NFTProperties />
           <PlaceOfferButton allowOffer={allowOffer} />
-          <AuctionInfo showPerpetual={showPerpetual} />
+          {edition ? (
+            <EditionInfo />
+          ) : (
+            <AuctionInfo showPerpetual={showPerpetual} />
+          )}
+
           <ProofAuthenticity />
-          <BidHistory showPerpetual={showPerpetual} />
+          <BidHistory showPerpetual={showPerpetual} edition={edition} />
           <CreatorEquity />
         </div>
       </>

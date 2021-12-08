@@ -3,7 +3,7 @@ import type {
   useNFTMetadataType,
   useNFTType,
   useZNFTType,
-} from "@zoralabs/nft-hooks";
+} from "@artiva/nft-hooks";
 
 export type NFTDataContext = {
   nft: useNFTType | useZNFTType;

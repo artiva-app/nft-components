@@ -1,4 +1,4 @@
-import { AuctionResultType, useAuctions } from "@zoralabs/nft-hooks";
+import { AuctionResultType, useAuctions } from "@artiva/nft-hooks";
 import { useMediaContext } from "../context/useMediaContext";
 import { NFTPreview } from "../nft-preview/NFTPreview";
 

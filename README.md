@@ -42,7 +42,7 @@ yarn add @zoralabs/nft-components
 2. Render a NFT Thumbnail:
 
 ```tsx
-import { NFTPreview } from "@zoralabs/nft-components";
+import { NFTPreview } from "@artiva/nft-components";
 
 export const Page = () => <NFTPreview id="3002" />;
 ```
@@ -50,7 +50,7 @@ export const Page = () => <NFTPreview id="3002" />;
 3. Render a NFT Full page:
 
 ```tsx
-import { NFTFullPage } from "@zoralabs/nft-components";
+import { NFTFullPage } from "@artiva/nft-components";
 
 export const Page = () => <NFTFullPage id="3002" />;
 ```
@@ -58,7 +58,7 @@ export const Page = () => <NFTFullPage id="3002" />;
 4. Render a list of auctions for a curator:
 
 ```tsx
-import { NFTFullPage } from "@zoralabs/nft-components";
+import { NFTFullPage } from "@artiva/nft-components";
 
 export const Page = ({curatorId}: {curatorId: string}) => (
     <AuctionHouseList
@@ -72,7 +72,7 @@ export const Page = ({curatorId}: {curatorId: string}) => (
 4. Render a proposed auction:
 
 ```tsx
-import { NFTProposal } from "@zoralabs/nft-components";
+import { NFTProposal } from "@artiva/nft-components";
 
 export const Page = () => <NFTProposal id="3002" />;
 ```

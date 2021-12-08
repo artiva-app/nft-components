@@ -4,17 +4,19 @@ import {
   useNFTType,
   useNFTMetadataType,
   useNFTMetadata,
-} from "@zoralabs/nft-hooks";
+} from "@artiva/nft-hooks";
 
 import { NFTDataContext } from "./NFTDataContext";
 import type {
   OpenseaNFTDataType,
   ZNFTDataType,
-} from "@zoralabs/nft-hooks/dist/fetcher/AuctionInfoTypes";
+} from "@artiva/nft-hooks/dist/fetcher/AuctionInfoTypes";
+import type { EditionNFTDataType } from "@artiva/nft-hooks/dist/fetcher/EditionUtils";
 
 export type NFTDataProviderProps = {
-  id: string;
+  id?: string;
   contract?: string;
+  edition?: boolean;
   useBetaIndexer?: boolean;
   refreshInterval?: number;
   children: React.ReactNode;
@@ -33,6 +35,7 @@ export const NFTDataProvider = ({
   id,
   children,
   contract,
+  edition = false,
   refreshInterval,
   initialData,
   useBetaIndexer = false,
@@ -48,12 +51,24 @@ export const NFTDataProvider = ({
     initialData: nftInitial,
     refreshInterval: refreshInterval,
     useBetaIndexer,
+    edition,
   });
 
   const fetchedMetadata = useNFTMetadata(
     isZNFT(nft.data) ? nft.data?.nft.metadataURI : undefined,
     initialData?.metadata
   );
+
+  const editionMetadata = edition
+    ? {
+        loading: !!nft.data,
+        metadata: nft.data
+          ? DataTransformers.editionDataToMetadata(
+              nft.data as EditionNFTDataType
+            )
+          : undefined,
+      }
+    : undefined;
 
   const openseaMetadata = isOpensea(nft.data)
     ? {
@@ -70,7 +85,9 @@ export const NFTDataProvider = ({
     "zoraIndexerResponse" in nft.data &&
     (nft as any).data?.zoraIndexerResponse?.metadata?.json;
 
-  const metadata = zoraIndexerMetadata
+  const metadata = editionMetadata
+    ? editionMetadata
+    : zoraIndexerMetadata
     ? {
         metadata: zoraIndexerMetadata,
         loading: !!zoraIndexerMetadata,

@@ -1,4 +1,4 @@
-import { AuctionStateInfo, AuctionType } from "@zoralabs/nft-hooks";
+import { AuctionStateInfo, AuctionType } from "@artiva/nft-hooks";
 import React, { Fragment, useContext } from "react";
 
 import { PricingString } from "../utils/PricingString";
@@ -45,7 +45,7 @@ export const AuctionInfo = ({
   if (data.pricing.status === AuctionStateInfo.PERPETUAL_ASK && showPerpetual) {
     return (
       <Fragment>
-        {data.pricing.perpetual.ask && (
+        {data.pricing.perpetual && data.pricing.perpetual.ask && (
           <AuctionInfoWrapper titleString="LIST_PRICE">
             <PricingString pricing={data.pricing.perpetual.ask.pricing} />
           </AuctionInfoWrapper>
@@ -105,6 +105,7 @@ export const AuctionInfo = ({
   if (
     showPerpetual &&
     data.pricing.auctionType === AuctionType.PERPETUAL &&
+    data.pricing.perpetual &&
     data.pricing.perpetual.highestBid
   ) {
     return (
@@ -128,6 +129,7 @@ export const AuctionInfo = ({
     >
       <div {...getStyles("pricingAmount")}>
         {data.pricing.auctionType === AuctionType.PERPETUAL &&
+          data.pricing.perpetual &&
           data.pricing.perpetual.ask && (
             <div>
               <PricingString pricing={data.pricing.perpetual.ask.pricing} />

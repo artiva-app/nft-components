@@ -1,4 +1,4 @@
-import type { NFTDataType } from "@zoralabs/nft-hooks";
+import type { NFTDataType } from "@artiva/nft-hooks";
 
 export const defaultGetContentData = (nft: NFTDataType, metadata: any) => {
   return {

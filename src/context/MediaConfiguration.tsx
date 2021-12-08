@@ -1,8 +1,5 @@
 import React, { useContext } from "react";
-import {
-  NetworkIDs,
-  NFTFetchConfiguration,
-} from "@zoralabs/nft-hooks";
+import { NetworkIDs, NFTFetchConfiguration } from "@artiva/nft-hooks";
 import { merge } from "merge-anything";
 
 import type { Strings } from "../constants/strings";

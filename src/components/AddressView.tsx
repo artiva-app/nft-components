@@ -1,6 +1,6 @@
-import { useENSAddress, useZoraUsername } from "@zoralabs/nft-hooks";
+import { useENSAddress, useZoraUsername } from "@artiva/nft-hooks";
 import { useMediaContext } from "../context/useMediaContext";
-import type {StyleProps} from '../utils/StyleTypes';
+import type { StyleProps } from "../utils/StyleTypes";
 
 type AddressViewProps = {
   address: string;
@@ -9,7 +9,11 @@ type AddressViewProps = {
 
 const PREFIX_ADDRESS = "0x";
 
-export const AddressView = ({ address, showChars = 6, className }: AddressViewProps) => {
+export const AddressView = ({
+  address,
+  showChars = 6,
+  className,
+}: AddressViewProps) => {
   const { getStyles, style } = useMediaContext();
   const { theme } = style;
   // @ts-ignore (address can be undefined but not typed correctly for now)

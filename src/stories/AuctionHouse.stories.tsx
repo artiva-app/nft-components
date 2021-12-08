@@ -1,9 +1,5 @@
 import { Story, Meta } from "@storybook/react";
-import {
-  NetworkIDs,
-  Networks,
-  NFTFetchConfiguration,
-} from "@zoralabs/nft-hooks";
+import { NetworkIDs, Networks, NFTFetchConfiguration } from "@artiva/nft-hooks";
 
 import { AuctionHouseList } from "../auction-house/AuctionHouseList";
 
@@ -27,6 +23,6 @@ const Template: Story<AuctionHouseArgs> = (args) => (
 
 export const Images = Template.bind({});
 Images.args = {
-  network: Networks.RINKEBY,
+  network: Networks.POLYGON,
   curatorId: "0x5ed25dcc8490809215cd0632492467bebc60b8d5",
 };

@@ -4,7 +4,7 @@ import { useMediaContext } from "../context/useMediaContext";
 import { NFTDataContext } from "../context/NFTDataContext";
 import { CountdownDisplay } from "../components/CountdownDisplay";
 import { PricingString } from "../utils/PricingString";
-import { AuctionStateInfo, AuctionType } from "@zoralabs/nft-hooks";
+import { AuctionStateInfo, AuctionType } from "@artiva/nft-hooks";
 import type { StyleProps } from "../utils/StyleTypes";
 
 function isInFuture(timestamp: string) {
@@ -23,10 +23,48 @@ export const PricingComponent = ({
   const {
     nft: { data },
   } = useContext(NFTDataContext);
+  data?.pricing.auctionType;
 
   const { getStyles, getString } = useMediaContext();
 
   const pricing = data?.pricing;
+
+  if (
+    pricing &&
+    pricing.auctionType === AuctionType.EDITION &&
+    !pricing.edition?.salePrice
+  ) {
+    return (
+      <div {...getStyles("cardAuctionPricing", className, { type: "unknown" })}>
+        <div {...getStyles("textSubdued")}>Edition Price</div>
+        <div {...getStyles("pricingAmount")}>
+          {getString("NO_PRICING_PLACEHOLDER")}
+        </div>
+        <div {...getStyles("textSubdued")}>NFTs Sold</div>
+        <div {...getStyles("pricingAmount")}>
+          {`${pricing.edition?.totalSupply} / ${pricing.edition?.editionSize}`}
+        </div>
+      </div>
+    );
+  }
+
+  if (pricing && pricing.auctionType === AuctionType.EDITION) {
+    return (
+      <div {...getStyles("cardAuctionPricing", className, { type: "unknown" })}>
+        <div {...getStyles("textSubdued")}>Edition Price</div>
+        <div {...getStyles("pricingAmount")}>
+          {pricing.edition?.salePrice.prettyAmount}{" "}
+          {pricing.edition?.salePrice.currency.symbol}
+        </div>
+        <div {...getStyles("textSubdued")}>NFTs Sold</div>
+        <div {...getStyles("pricingAmount")}>
+          {`${pricing.edition?.totalSupply} / ${
+            pricing.edition?.editionSize ?? 99
+          }`}
+        </div>
+      </div>
+    );
+  }
 
   if (
     pricing &&
@@ -55,7 +93,7 @@ export const PricingComponent = ({
   ) {
     let listPrice = null;
 
-    if (pricing.perpetual.ask?.pricing) {
+    if (pricing.perpetual && pricing.perpetual.ask?.pricing) {
       const perpetualPricing = pricing.perpetual.ask?.pricing;
       listPrice = (
         <Fragment>
@@ -64,7 +102,7 @@ export const PricingComponent = ({
         </Fragment>
       );
     }
-    const highestBid = pricing.perpetual.highestBid;
+    const highestBid = pricing?.perpetual?.highestBid;
     if (!highestBid && pricing.reserve?.previousBids.length) {
       const highestPreviousBid = pricing.reserve.previousBids[0];
       return (

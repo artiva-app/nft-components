@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { NetworkIDs, Networks } from "@zoralabs/nft-hooks";
+import { NetworkIDs, Networks } from "@artiva/nft-hooks";
 
 import { Strings } from "../constants/strings";
 import { Style } from "../constants/style";

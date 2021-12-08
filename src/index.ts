@@ -1,4 +1,4 @@
-import { Networks } from "@zoralabs/nft-hooks";
+import { Networks } from "@artiva/nft-hooks";
 
 import { AuctionHouseList } from "./auction-house/AuctionHouseList";
 import { MediaConfiguration } from "./context/MediaConfiguration";

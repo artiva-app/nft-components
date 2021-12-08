@@ -1,5 +1,5 @@
 import { css } from "@emotion/css";
-import { AuctionStateInfo } from "@zoralabs/nft-hooks";
+import { AuctionStateInfo } from "@artiva/nft-hooks";
 
 import { Style } from "../../constants/style";
 import { ThemeOptionsType } from "../../constants/theme";

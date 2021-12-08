@@ -1,4 +1,4 @@
-import type { NFTDataType } from "@zoralabs/nft-hooks";
+import type { NFTDataType } from "@artiva/nft-hooks";
 import React, { useContext } from "react";
 
 import { NFTDataContext } from "../context/NFTDataContext";
@@ -34,9 +34,9 @@ export const ProofAuthenticity = ({ className }: StyleProps) => {
   const getContent = (nft: NFTDataType["nft"]) => {
     const infoURL =
       (data && "zoraNFT" in data && data?.zoraNFT?.contentURI) ||
-      data?.nft.metadataURI;
+      (data && "metadataURI" in data.nft && data?.nft.metadataURI);
     const infoUrlLabelText =
-      infoURL?.includes("/ipfs/") || infoURL?.startsWith("ipfs://")
+      infoURL && (infoURL?.includes("/ipfs/") || infoURL?.startsWith("ipfs://"))
         ? "VIEW_IPFS"
         : "VIEW_METADATA";
 
@@ -44,7 +44,9 @@ export const ProofAuthenticity = ({ className }: StyleProps) => {
       <React.Fragment>
         <ProofLink
           styles={linkStyles}
-          href={`${VIEW_ETHERSCAN_URL_BASE_BY_NETWORK[networkId]}${nft.contract.address}?a=${nft.tokenId}`}
+          href={`${VIEW_ETHERSCAN_URL_BASE_BY_NETWORK[networkId]}${
+            nft.contract.address
+          }${"tokenId" in nft ? `?a=${nft.tokenId}` : ""}`}
         >
           {getString("ETHERSCAN_TXN")}
         </ProofLink>
@@ -56,7 +58,9 @@ export const ProofAuthenticity = ({ className }: StyleProps) => {
         {data && "zoraNFT" in data && data.zoraNFT && (
           <ProofLink
             styles={linkStyles}
-            href={`${MEDIA_URL_BASE_BY_NETWORK[networkId]}${nft.creator}/${nft.tokenId}`}
+            href={`${MEDIA_URL_BASE_BY_NETWORK[networkId]}${nft.creator}/${
+              "tokenId" in nft ? nft.tokenId : ""
+            }`}
           >
             {getString("VIEW_ZORA")}
           </ProofLink>
