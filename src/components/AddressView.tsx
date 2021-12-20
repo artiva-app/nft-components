@@ -25,8 +25,8 @@ export const AddressView = ({
   const addressFirst = address.slice(0, showChars + PREFIX_ADDRESS.length);
   const addressLast = address.slice(address.length - showChars);
 
-  if (ens.data?.name) {
-    const zoraLink = ens.data.name.endsWith(".ens") ? ens.data.name : address;
+  if (ens.data) {
+    const zoraLink = ens.data;
     return (
       <a
         {...getStyles("addressLink", className)}
@@ -34,7 +34,7 @@ export const AddressView = ({
         target="_blank"
         rel="noreferrer"
       >
-        <span>{ens.data.name}</span>
+        <span>{ens.data}</span>
       </a>
     );
   }

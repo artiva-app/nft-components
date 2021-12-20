@@ -42,7 +42,7 @@
     "typescript": "^4.2.4"
   },
   "peerDependencies": {
-    "@artiva/nft-hooks": "^0.7.0"
+    "@zoralabs/nft-hooks": "^0.8.0"
   },
   "lint-staged": {
     "*.{ts,md}": "prettier src --write"

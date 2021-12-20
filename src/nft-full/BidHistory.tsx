@@ -85,7 +85,8 @@ export const BidHistory = ({
         pricing: <Fragment />,
         actor: highestBid.bidder.id,
         createdAt: data.pricing.reserve.expectedEndTimestamp,
-        transactionHash: null,
+        transactionHash:
+          data.pricing.reserve.currentBid?.transactionHash || null,
       });
     }
 
@@ -107,7 +108,7 @@ export const BidHistory = ({
     if ("zoraIndexerResponse" in data && data.zoraIndexerResponse.minter) {
       const unixDate =
         new Date(
-          data.zoraIndexerResponse.mintTransferEvent?.blockTimestamp
+          data.zoraIndexerResponse.mintTransferEvent?.blockTimestamp + "Z"
         ).getTime() / 1000;
 
       eventsList.push({
@@ -115,7 +116,8 @@ export const BidHistory = ({
         pricing: <Fragment />,
         actor: data.zoraIndexerResponse.minter,
         createdAt: unixDate.toString(),
-        transactionHash: null,
+        transactionHash:
+          data.zoraIndexerResponse.mintTransferEvent?.transactionHash || null,
       });
     }
 
