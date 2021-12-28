@@ -31,21 +31,21 @@ export const ThemeOptions = {
    * Set an overriding preferred IPFS provider here
    * Include a trailing slash
    */
-  preferredIPFSGateway: 'https://ipfs.io/ipfs/',
+  preferredIPFSGateway: "https://ipfs.io/ipfs/",
 
   /**
    * Flag if zora username resolution should be automatically used
    * @default true
    */
   useZoraUsernameResolution: true,
-   
+
   /**
    * Flag if showing the nft owner on full view
    * should be enabled
    * @default true
    */
   showOwner: true,
-  
+
   /**
    * Flag if showing transaction history links on full view
    * should be enabled
@@ -58,7 +58,7 @@ export const ThemeOptions = {
    * @default 20px
    */
   spacingUnit: "20px",
-  
+
   /**
    * Padding for preview card text block
    * @default 10px 15px
@@ -153,23 +153,23 @@ export const ThemeOptions = {
    * Audio Player Color configurations
    * @default {waveformColor: '#999, progressColor: '#333'}
    */
-   audioColors: {
-    waveformColor: '#999',
-    progressColor: '#333'
-   },
+  audioColors: {
+    waveformColor: "#999",
+    progressColor: "#333",
+  },
 
-   /**
+  /**
    * Background color for loading media content
    * @default {placeHolderColor '#e6e6e6'}
    */
-    placeHolderColor: '#e6e6e6',
-   
+  placeHolderColor: "#e6e6e6",
+
   /**
    * Flag if showing the nft collection tag on full view
    * should be enabled
    * @default true
    */
-   useCollectionTag: true,
+  useCollectionTag: true,
 };
 
 export type ThemeOptionsType = typeof ThemeOptions;

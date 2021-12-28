@@ -551,10 +551,11 @@ export const Style = {
       theme.mediaContentFont,
     ],
     mediaPlayButton: (_: ThemeOptionsType, { playing }: any) => css`
-      ${buttonCommonSize("32px")}
+      ${buttonCommonSize("20px")}
       background-image: url("data:image/svg+xml,${encodeURIComponent(
         playing ? SVG_PAUSE : SVG_PLAY_ARROW
       )}");
+      background-size: 20px;
       z-index: 8;
     `,
     mediaVideoControls: (_: ThemeOptionsType, { isFullPage }: any) => css`

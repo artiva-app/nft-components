@@ -10,7 +10,7 @@ export default {
 
 const Template: Story<typeof NFTFullPage> = (args) => (
   <MediaConfiguration
-    networkId={(args as any).testnet ? Networks.POLYGON : Networks.MAINNET}
+    networkId={(args as any).testnet ? Networks.MUMBAI : Networks.MAINNET}
   >
     {/* @ts-ignore */}
     <NFTFullPage {...args} />
@@ -35,7 +35,9 @@ GIF.args = {
 
 export const Audio = Template.bind({});
 Audio.args = {
-  id: "3092",
+  contract: "0x76321b566062867592932D02CE1a56f853a1Fb5A",
+  testnet: true,
+  edition: true,
 };
 
 export const Text = Template.bind({});

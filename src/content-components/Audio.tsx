@@ -77,7 +77,7 @@ const FakeWaveformCanvas = ({
     [audioRef.current, width]
   );
 
-  const height = 200;
+  const height = 20;
   const updateCanvasLines = useCallback(() => {
     if (canvasRef.current && width && audioRef.current) {
       const context = canvasRef.current.getContext("2d");
@@ -161,24 +161,44 @@ export const AudioRenderer = forwardRef<HTMLAudioElement, RenderComponentType>(
       <MediaLoader getStyles={getStyles} loading={loading} error={error}>
         <div ref={wrapper} {...getStyles("mediaAudioWrapper")}>
           {!loading && (
-            <Fragment>
-              <button
-                aria-live="polite"
-                aria-pressed={playing ? true : false}
-                onClick={togglePlay}
-                title={playingText}
-                {...getStyles("mediaPlayButton", undefined, { playing })}
+            <div>
+              <img
+                src={request.media.image?.uri}
+                style={{ maxHeight: "400px" }}
+              />
+              <div
+                style={{
+                  marginTop: "4px",
+                }}
               >
-                {playingText}
-              </button>
-              <div {...getStyles("mediaAudioWaveform")}>
-                <FakeWaveformCanvas
-                  uri={uri || ""}
-                  audioRef={audioRef}
-                  audioColors={theme.audioColors}
-                />
+                <div
+                  style={{
+                    flexDirection: "row",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "around",
+                  }}
+                >
+                  <button
+                    aria-live="polite"
+                    aria-pressed={playing ? true : false}
+                    onClick={togglePlay}
+                    title={playingText}
+                    {...getStyles("mediaPlayButton", undefined, { playing })}
+                  >
+                    {playingText}
+                  </button>
+
+                  <div {...getStyles("mediaAudioWaveform")}>
+                    <FakeWaveformCanvas
+                      uri={uri || ""}
+                      audioRef={audioRef}
+                      audioColors={theme.audioColors}
+                    />
+                  </div>
+                </div>
               </div>
-            </Fragment>
+            </div>
           )}
           <audio
             loop={true}
