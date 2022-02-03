@@ -1,5 +1,4 @@
 import {
-  Fragment,
   MouseEventHandler,
   useCallback,
   useEffect,
@@ -145,6 +144,19 @@ export const AudioRenderer = forwardRef<HTMLAudioElement, RenderComponentType>(
     );
 
     useEffect(() => {
+      const isMobile = () => {
+        try {
+          document.createEvent("TouchEvent");
+          return true;
+        } catch (e) {
+          return false;
+        }
+      };
+      if (!document || !isMobile()) return;
+      props.onLoad();
+    }, [document]);
+
+    useEffect(() => {
       if (!audioRef.current) {
         return;
       }
@@ -164,11 +176,12 @@ export const AudioRenderer = forwardRef<HTMLAudioElement, RenderComponentType>(
             <div>
               <img
                 src={request.media.image?.uri}
-                style={{ maxHeight: "400px" }}
+                style={{ objectFit: "contain", maxWidth: "330px" }}
               />
               <div
                 style={{
-                  marginTop: "4px",
+                  marginTop: "10px",
+                  maxWidth: "270px",
                 }}
               >
                 <div

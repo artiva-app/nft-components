@@ -30,6 +30,8 @@ export const MediaFull = ({
         <MediaObject
           isFullPage={true}
           a11yIdPrefix={a11yIdPrefix}
+          tokenId={data.nft.tokenId ?? undefined}
+          contract={data.nft.contract.address}
           {...getContentData(data, metadata)}
         />
       );

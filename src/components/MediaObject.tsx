@@ -21,6 +21,8 @@ type MediaObjectProps = {
   contentURI?: string;
   a11yIdPrefix?: string;
   metadata: MetadataIsh;
+  contract?: string;
+  tokenId?: string;
   isFullPage?: boolean;
 };
 
@@ -28,11 +30,14 @@ export const MediaObject = ({
   contentURI,
   metadata,
   a11yIdPrefix,
+  contract,
+  tokenId,
   isFullPage = false,
 }: MediaObjectProps) => {
   const mediaType = useNFTContent(metadata.animation_url);
   const [renderingInfo, setRenderingInfo] = useState<RendererConfig>();
-  const { getStyles, getString, renderers, style } = useMediaContext();
+  const { getStyles, getString, renderers, style, networkId } =
+    useMediaContext();
 
   const request: RenderRequest = {
     media: {
@@ -60,6 +65,9 @@ export const MediaObject = ({
     },
     metadata,
     renderingContext: isFullPage ? "FULL" : "PREVIEW",
+    contract: contract,
+    tokenId: tokenId,
+    chainId: networkId,
   };
 
   useEffect(() => {

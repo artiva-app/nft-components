@@ -23,6 +23,8 @@ export const ProposalMediaDisplay = ({
       return {
         media: (
           <MediaObject
+            tokenId={data.nft.tokenId ?? undefined}
+            contract={data.nft.contract.address}
             contentURI={
               data && "zoraNFT" in data ? data.zoraNFT?.contentURI : undefined
             }

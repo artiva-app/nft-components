@@ -15,6 +15,7 @@ export type NFTPreviewProps = {
   children?: React.ReactNode;
   showBids?: boolean;
   showPerpetual?: boolean;
+  showInfo?: boolean;
 } & Omit<NFTDataProviderProps, "children"> &
   StyleProps;
 
@@ -25,6 +26,7 @@ export const NFTPreview = ({
   onClick,
   showBids = true,
   showPerpetual = true,
+  showInfo = true,
   ...wrapperProps
 }: NFTPreviewProps) => {
   const getChildren = () => {
@@ -33,7 +35,7 @@ export const NFTPreview = ({
     }
     return (
       <Fragment>
-        <MediaThumbnail />
+        <MediaThumbnail showInfo={showInfo} />
         {showBids && <PricingComponent showPerpetual={showPerpetual} />}
       </Fragment>
     );

@@ -1,16 +1,22 @@
 import { NFTPreview, NFTPreviewProps } from "../nft-preview/NFTPreview";
 import { Story, Meta } from "@storybook/react";
+import { MediaConfiguration } from "../context/MediaConfiguration";
+import { Networks } from "@artiva/nft-hooks";
 
 export default {
   title: "Renderer/NFTPreview",
   component: NFTPreview,
 } as Meta;
 
-const Template: Story<NFTPreviewProps> = (args) => <NFTPreview {...args} />;
+const Template: Story<NFTPreviewProps> = (args) => (
+  <MediaConfiguration networkId={Networks.POLYGON}>
+    <NFTPreview {...args} />
+  </MediaConfiguration>
+);
 
 export const Image = Template.bind({});
 Image.args = {
-  contract: "0x7ff45c41fe33a8745dd58341fe534eee83014e53",
+  contract: "0x24AD61B1D5e0f3345339400B82b60CF1621Bf5f0",
   edition: true,
 };
 

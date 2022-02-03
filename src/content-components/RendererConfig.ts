@@ -24,6 +24,9 @@ export type RenderRequest = {
   };
   metadata: any;
   renderingContext: "PREVIEW" | "FULL";
+  contract?: string;
+  tokenId?: string;
+  chainId?: string;
 };
 
 export type RenderComponentType = {

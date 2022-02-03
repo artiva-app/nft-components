@@ -4,6 +4,7 @@ import { NFTDataContext } from "../context/NFTDataContext";
 import { AddressView } from "../components/AddressView";
 import { useMediaContext } from "../context/useMediaContext";
 import type { StyleProps } from "../utils/StyleTypes";
+import { unescapeString } from "../utils/unescape";
 
 type MediaInfoProps = {
   a11yIdPrefix?: string;
@@ -19,8 +20,10 @@ export const MediaInfo = ({ a11yIdPrefix, className }: MediaInfoProps) => {
   const getContent = () => {
     if (metadata && data) {
       return {
-        title: metadata.name,
-        description: metadata.description,
+        title: metadata.name ? unescapeString(metadata.name) : undefined,
+        description: metadata.description
+          ? unescapeString(metadata.description)
+          : undefined,
       };
     }
     if (error) {

@@ -13,7 +13,8 @@ import type { StyleProps } from "../utils/StyleTypes";
 export const MediaThumbnail = ({
   getContentData = defaultGetContentData,
   className,
-}: GetContentDataType & StyleProps) => {
+  showInfo,
+}: GetContentDataType & StyleProps & { showInfo: boolean }) => {
   const {
     nft: { data },
     metadata: { metadata },
@@ -24,7 +25,13 @@ export const MediaThumbnail = ({
   const getContent = () => {
     if (metadata && data) {
       return {
-        media: <MediaObject {...getContentData(data, metadata)} />,
+        media: (
+          <MediaObject
+            tokenId={data.nft.tokenId ?? undefined}
+            contract={data.nft.contract.address}
+            {...getContentData(data, metadata)}
+          />
+        ),
         title: metadata.name,
       };
     }
@@ -40,17 +47,19 @@ export const MediaThumbnail = ({
   return (
     <div className={className}>
       <div {...getStyles("cardMediaWrapper")}>{media}</div>
-      <div {...getStyles("cardItemInfo")}>
-        <h5 {...getStyles("cardTitle")}>{title}</h5>
-        <div>
-          <span {...getStyles("textSubdued")}>
-            {hasCreator
-              ? getString("CARD_CREATED_BY")
-              : getString("CARD_OWNED_BY")}
-          </span>{" "}
-          <span>{address && <AddressView address={address} />}</span>
+      {showInfo && (
+        <div {...getStyles("cardItemInfo")}>
+          <h5 {...getStyles("cardTitle")}>{title}</h5>
+          <div>
+            <span {...getStyles("textSubdued")}>
+              {hasCreator
+                ? getString("CARD_CREATED_BY")
+                : getString("CARD_OWNED_BY")}
+            </span>{" "}
+            <span>{address && <AddressView address={address} />}</span>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

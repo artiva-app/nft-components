@@ -45,7 +45,10 @@ export function useMediaObjectProps({
       alt: request.metadata.name || request.metadata.description,
       onLoad: () => setLoading(false),
       // TODO(iain): Update Error
-      onError: () => setError("Error loading"),
+      onError: (err: any) => {
+        console.log("Error loading content", err);
+        setError("Error loading");
+      },
       src: uri ? getNormalizedURI(uri, { preferredIPFSGateway }) : uri,
       ...getStyles("mediaObject", undefined, {
         mediaLoaded: !loading,

@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@artiva/nft-hooks@^0.8.16":
-  version "0.8.16"
-  resolved "https://registry.yarnpkg.com/@artiva/nft-hooks/-/nft-hooks-0.8.16.tgz#e6fca1a51c93e678d47313cc34b3717ca103df4c"
-  integrity sha512-y2j0J0Nz7Nsri71Er3kT+NcXUFnLj11MPpUlYhQf/1JCre/Kolet+bKMzjdbwRh2gatf3ffJWdtIkkNzJd7HCQ==
+"@artiva/nft-hooks@^0.8.21":
+  version "0.8.21"
+  resolved "https://registry.yarnpkg.com/@artiva/nft-hooks/-/nft-hooks-0.8.21.tgz#4a7e5257e27269d23018d7517db3a1d99be8be8d"
+  integrity sha512-No/KRi/xkFXOfY3XYu1Ik29kzf32cS466B3jEdlXp4vALYrS33Pk+d8tv3xeUreEIuBwlCBkUf64DCHA6laIfw==
   dependencies:
     "@ethersproject/address" "^5.4.0"
     "@ethersproject/bytes" "^5.5.0"
@@ -14,6 +14,7 @@
     dataloader "^2.0.0"
     graphql "^15.5.0"
     graphql-request "^3.4.0"
+    js-base64 "^3.7.2"
     node-abort-controller "^2.0.0"
     react "^17.0.2"
     react-test-renderer "^17.0.2"
@@ -7412,6 +7413,11 @@ jest@^27.0.4:
     "@jest/core" "^27.4.5"
     import-local "^3.0.2"
     jest-cli "^27.4.5"
+
+js-base64@^3.7.2:
+  version "3.7.2"
+  resolved "https://registry.yarnpkg.com/js-base64/-/js-base64-3.7.2.tgz#816d11d81a8aff241603d19ce5761e13e41d7745"
+  integrity sha512-NnRs6dsyqUXejqk/yv2aiXlAvOs56sLkX6nUdeaNezI5LFFLlsZjOThmwnrcwh5ZZRwZlCMnVAY3CvhIhoVEKQ==
 
 js-sha3@0.8.0:
   version "0.8.0"
