@@ -1,4 +1,5 @@
 import {
+  Fragment,
   MouseEventHandler,
   useCallback,
   useEffect,
@@ -76,7 +77,7 @@ const FakeWaveformCanvas = ({
     [audioRef.current, width]
   );
 
-  const height = 20;
+  const height = 200;
   const updateCanvasLines = useCallback(() => {
     if (canvasRef.current && width && audioRef.current) {
       const context = canvasRef.current.getContext("2d");
@@ -173,45 +174,24 @@ export const AudioRenderer = forwardRef<HTMLAudioElement, RenderComponentType>(
       <MediaLoader getStyles={getStyles} loading={loading} error={error}>
         <div ref={wrapper} {...getStyles("mediaAudioWrapper")}>
           {!loading && (
-            <div>
-              <img
-                src={request.media.image?.uri}
-                style={{ objectFit: "contain", maxWidth: "330px" }}
-              />
-              <div
-                style={{
-                  marginTop: "10px",
-                  maxWidth: "270px",
-                }}
+            <Fragment>
+              <button
+                aria-live="polite"
+                aria-pressed={playing ? true : false}
+                onClick={togglePlay}
+                title={playingText}
+                {...getStyles("mediaPlayButton", undefined, { playing })}
               >
-                <div
-                  style={{
-                    flexDirection: "row",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "around",
-                  }}
-                >
-                  <button
-                    aria-live="polite"
-                    aria-pressed={playing ? true : false}
-                    onClick={togglePlay}
-                    title={playingText}
-                    {...getStyles("mediaPlayButton", undefined, { playing })}
-                  >
-                    {playingText}
-                  </button>
-
-                  <div {...getStyles("mediaAudioWaveform")}>
-                    <FakeWaveformCanvas
-                      uri={uri || ""}
-                      audioRef={audioRef}
-                      audioColors={theme.audioColors}
-                    />
-                  </div>
-                </div>
+                {playingText}
+              </button>
+              <div {...getStyles("mediaAudioWaveform")}>
+                <FakeWaveformCanvas
+                  uri={uri || ""}
+                  audioRef={audioRef}
+                  audioColors={theme.audioColors}
+                />
               </div>
-            </div>
+            </Fragment>
           )}
           <audio
             loop={true}
@@ -233,12 +213,15 @@ export const AudioRenderer = forwardRef<HTMLAudioElement, RenderComponentType>(
 
 export const Audio: RendererConfig = {
   getRenderingPreference(request: RenderRequest) {
+    let uri = request.media?.image?.uri;
+    if (uri && uri.includes("ipfs")) return RenderingPreference.INVALID;
+
     if (
       request.media.content?.type?.startsWith("audio") ||
       request.media.animation?.type?.startsWith("audio")
     ) {
       return request.renderingContext === "FULL"
-        ? RenderingPreference.PRIORITY
+        ? RenderingPreference.NORMAL
         : RenderingPreference.LOW;
     }
     return RenderingPreference.INVALID;

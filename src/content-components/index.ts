@@ -1,3 +1,4 @@
+import { AudioImage } from "./AudioImage";
 import { Audio } from "./Audio";
 import { HTML } from "./HTML";
 import { Image } from "./Image";
@@ -16,4 +17,4 @@ export const MediaRendererDefaults = [
   Unknown,
 ];
 
-export { Text, HTML, Image, Video, Audio, Model, Unknown };
+export { Text, HTML, Image, Video, Audio, AudioImage, Model, Unknown };

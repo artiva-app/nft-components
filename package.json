@@ -1,6 +1,6 @@
 {
   "name": "@artiva/nft-components",
-  "version": "0.3.32",
+  "version": "0.3.35",
   "description": "NFT Media Rendering Components",
   "typings": "dist/index.d.ts",
   "source": "src/index.ts",
