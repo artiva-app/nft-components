@@ -1,4 +1,4 @@
-import type { NFTDataType } from "@artiva/nft-hooks";
+import { Networks, NFTDataType } from "@artiva/nft-hooks";
 import React, { useContext } from "react";
 
 import { NFTDataContext } from "../context/NFTDataContext";
@@ -55,16 +55,19 @@ export const ProofAuthenticity = ({ className }: StyleProps) => {
             {getString(infoUrlLabelText)}
           </ProofLink>
         )}
-        {data && "zoraNFT" in data && data.zoraNFT && (
-          <ProofLink
-            styles={linkStyles}
-            href={`${MEDIA_URL_BASE_BY_NETWORK[networkId]}${nft.creator}/${
-              "tokenId" in nft ? nft.tokenId : ""
-            }`}
-          >
-            {getString("VIEW_ZORA")}
-          </ProofLink>
-        )}
+        {data &&
+          "zoraNFT" in data &&
+          data.zoraNFT &&
+          networkId === Networks.MAINNET && (
+            <ProofLink
+              styles={linkStyles}
+              href={`${MEDIA_URL_BASE_BY_NETWORK[networkId]}${nft.creator}/${
+                "tokenId" in nft ? nft.tokenId : ""
+              }`}
+            >
+              {getString("VIEW_ZORA")}
+            </ProofLink>
+          )}
       </React.Fragment>
     );
   };

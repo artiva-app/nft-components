@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@artiva/nft-hooks@^0.8.21":
-  version "0.8.21"
-  resolved "https://registry.yarnpkg.com/@artiva/nft-hooks/-/nft-hooks-0.8.21.tgz#4a7e5257e27269d23018d7517db3a1d99be8be8d"
-  integrity sha512-No/KRi/xkFXOfY3XYu1Ik29kzf32cS466B3jEdlXp4vALYrS33Pk+d8tv3xeUreEIuBwlCBkUf64DCHA6laIfw==
+"@artiva/nft-hooks@^0.8.23":
+  version "0.8.23"
+  resolved "https://registry.yarnpkg.com/@artiva/nft-hooks/-/nft-hooks-0.8.23.tgz#ad18515e50eae807874eff93ff5bdccbd748a91b"
+  integrity sha512-7IowjwCoLH1ukWbgpjvoiD2Dak4a5ITTHAjQTc+e1pC/k88RIyK8sf+Oo5xNf+mECy7ylXE4ydDss6+3Hp8Cyw==
   dependencies:
     "@ethersproject/address" "^5.4.0"
     "@ethersproject/bytes" "^5.5.0"

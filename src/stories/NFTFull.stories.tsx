@@ -10,7 +10,7 @@ export default {
 
 const Template: Story<typeof NFTFullPage> = (args) => (
   <MediaConfiguration
-    networkId={(args as any).testnet ? Networks.RINKEBY : Networks.MAINNET}
+    networkId={(args as any).testnet ? Networks.POLYGON : Networks.MAINNET}
   >
     {/* @ts-ignore */}
     <NFTFullPage {...args} />
@@ -19,8 +19,7 @@ const Template: Story<typeof NFTFullPage> = (args) => (
 
 export const Image = Template.bind({});
 Image.args = {
-  contract: "0xbD557eFCca30f8d5D3FC96F74d3d15790f25939b",
-  edition: true,
+  id: "89",
   testnet: true,
 };
 
