@@ -234,13 +234,11 @@ export const AudioImageRenderer = forwardRef<
 
 export const AudioImage: RendererConfig = {
   getRenderingPreference(request: RenderRequest) {
-    let uri = request.media?.image?.uri;
-    if (!uri || !uri.includes("ipfs")) return RenderingPreference.INVALID;
-
-    const isAudio =
-      request.media.content?.type?.startsWith("audio") ||
-      request.media.animation?.type?.startsWith("audio");
-    if (isAudio) {
+    if (
+      request.media?.image &&
+      (request.media.content?.type?.startsWith("audio") ||
+        request.media.animation?.type?.startsWith("audio"))
+    ) {
       return request.renderingContext === "FULL"
         ? RenderingPreference.PRIORITY
         : RenderingPreference.LOW;

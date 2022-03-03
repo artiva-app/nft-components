@@ -9,7 +9,7 @@ export default {
 } as Meta;
 
 const Template: Story<NFTPreviewProps> = (args) => (
-  <MediaConfiguration networkId={Networks.POLYGON}>
+  <MediaConfiguration networkId={Networks.MAINNET}>
     <NFTPreview {...args} />
   </MediaConfiguration>
 );

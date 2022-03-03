@@ -78,7 +78,7 @@ ArtBlocks.args = {
 export const ModelViewer = Template.bind({});
 ModelViewer.args = {
   id: "3591",
-  testnet: true,
+  testnet: false,
 };
 
 export const CryptoKitty = Template.bind({});

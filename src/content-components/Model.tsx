@@ -15,7 +15,8 @@ export const Model: ModelRenderer = {
   renderingPage:
     "https://gateway.pinata.cloud/ipfs/QmVc3UHHL6dhjWuY4cryY3yoEu1HoX8KcFafq3K4ELbZEJ/model-viewer.html",
   getRenderingPreference: (request: RenderRequest) => {
-    if (request.media.content?.type?.startsWith("model/gltf")) {
+    const type = request.media.content?.type ?? request.media.animation?.type;
+    if (type?.startsWith("model/gltf")) {
       return request.renderingContext === "FULL"
         ? RenderingPreference.PRIORITY
         : RenderingPreference.NORMAL;
@@ -35,6 +36,7 @@ export const Model: ModelRenderer = {
       params.append("poster", props.request.media.image?.uri);
     }
     const newProps = { ...props };
+
     newProps.request.media.content = {
       uri: `${Model.renderingPage}#${params.toString()}`,
     };

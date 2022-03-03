@@ -189,7 +189,11 @@ export const PricingComponent = ({
         </div>
       );
     }
-    if (pricing.reserve?.reservePrice) {
+
+    if (
+      pricing.reserve?.reservePrice &&
+      pricing.status !== AuctionStateInfo.NO_PRICING
+    ) {
       return (
         <div
           {...getStyles("cardAuctionPricing", className, {

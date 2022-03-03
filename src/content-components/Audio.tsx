@@ -213,8 +213,7 @@ export const AudioRenderer = forwardRef<HTMLAudioElement, RenderComponentType>(
 
 export const Audio: RendererConfig = {
   getRenderingPreference(request: RenderRequest) {
-    let uri = request.media?.image?.uri;
-    if (uri && uri.includes("ipfs")) return RenderingPreference.INVALID;
+    if (request.media?.image) return RenderingPreference.INVALID;
 
     if (
       request.media.content?.type?.startsWith("audio") ||

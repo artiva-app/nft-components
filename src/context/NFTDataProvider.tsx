@@ -58,6 +58,12 @@ export const NFTDataProvider = ({
     isZNFT(nft.data) ? nft.data?.nft.metadataURI : undefined,
     initialData?.metadata
   );
+  if (
+    fetchedMetadata.metadata?.body?.version &&
+    fetchedMetadata.metadata?.body?.version.includes("catalog")
+  ) {
+    fetchedMetadata.metadata.name = fetchedMetadata.metadata?.body?.title;
+  }
 
   const editionMetadata = edition
     ? {

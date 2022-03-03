@@ -10,6 +10,7 @@ import { Video } from "./Video";
 export const MediaRendererDefaults = [
   Model,
   Audio,
+  AudioImage,
   Text,
   HTML,
   Image,
