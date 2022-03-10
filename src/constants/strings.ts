@@ -248,9 +248,9 @@ export const Strings = {
    */
   EDITION_PRICE: "Edition Price",
   /**
-   * NFTs Sold title text
+   * NFTs Collected title text
    *
-   * @default NFTs Sold
+   * @default NFTs Collected
    */
-  NFTS_SOLD: "NFTs Sold",
+  NFTS_COLLECTED: "NFTs Collected",
 };

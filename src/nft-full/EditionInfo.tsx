@@ -39,7 +39,7 @@ export const EditionInfo = ({ className }: StyleProps) => {
         )}
         <div>
           <div {...getStyles("fullInfoSpacer")} />
-          <div {...getStyles("fullLabel")}>{getString("NFTS_SOLD")}</div>
+          <div {...getStyles("fullLabel")}>{getString("NFTS_COLLECTED")}</div>
           {`${data.pricing.edition?.totalSupply} / ${data.pricing.edition?.editionSize}`}
         </div>
       </div>

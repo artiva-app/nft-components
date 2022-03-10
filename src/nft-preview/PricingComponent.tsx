@@ -40,7 +40,7 @@ export const PricingComponent = ({
         <div {...getStyles("pricingAmount")}>
           {getString("NO_PRICING_PLACEHOLDER")}
         </div>
-        <div {...getStyles("textSubdued")}>NFTs Sold</div>
+        <div {...getStyles("textSubdued")}>{getString("NFTS_COLLECTED")}</div>
         <div {...getStyles("pricingAmount")}>
           {`${pricing.edition?.totalSupply} / ${pricing.edition?.editionSize}`}
         </div>
@@ -56,7 +56,7 @@ export const PricingComponent = ({
           {pricing.edition?.salePrice.prettyAmount}{" "}
           {pricing.edition?.salePrice.currency.symbol}
         </div>
-        <div {...getStyles("textSubdued")}>NFTs Sold</div>
+        <div {...getStyles("textSubdued")}>{getString("NFTS_COLLECTED")}</div>
         <div {...getStyles("pricingAmount")}>
           {`${pricing.edition?.totalSupply} / ${
             pricing.edition?.editionSize ?? 99
