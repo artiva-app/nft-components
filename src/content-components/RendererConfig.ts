@@ -26,7 +26,11 @@ export type RenderRequest = {
   renderingContext: "PREVIEW" | "FULL";
   contract?: string;
   tokenId?: string;
+<<<<<<< HEAD
   chainId?: string;
+=======
+  networkId?: string;
+>>>>>>> 1a35d9ee22c6030e3a915fc8f7868dba2bfc8f90
 };
 
 export type RenderComponentType = {

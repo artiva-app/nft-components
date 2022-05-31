@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { AuctionResultType, useAuctions } from "@artiva/nft-hooks";
+=======
+/*
+>>>>>>> 1a35d9ee22c6030e3a915fc8f7868dba2bfc8f90
 import { useMediaContext } from "../context/useMediaContext";
 import { NFTPreview } from "../nft-preview/NFTPreview";
 
@@ -7,7 +11,7 @@ type AuctionHouseProps = {
   approved?: boolean | null;
   onClick?: (
     evt: React.MouseEvent<HTMLElement>,
-    result: AuctionResultType
+    result: void
   ) => void;
 };
 
@@ -37,3 +41,7 @@ export const AuctionHouseList = ({
     </div>
   );
 };
+
+*/
+
+export {}

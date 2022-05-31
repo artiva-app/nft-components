@@ -20,23 +20,27 @@ export const MediaFull = ({
 }: MediaFullProps) => {
   const { getStyles } = useMediaContext();
   const {
-    nft: { data },
-    metadata: { metadata, error },
+    data,
+    error
   } = useContext(NFTDataContext);
 
   const getContent = () => {
-    if (metadata && data) {
+    if (data && data.metadata) {
       return (
         <MediaObject
           isFullPage={true}
           a11yIdPrefix={a11yIdPrefix}
+<<<<<<< HEAD
           tokenId={data.nft.tokenId ?? undefined}
           contract={data.nft.contract.address}
           {...getContentData(data, metadata)}
+=======
+          {...getContentData(data)}
+>>>>>>> 1a35d9ee22c6030e3a915fc8f7868dba2bfc8f90
         />
       );
     }
-    if (error) {
+    if (!data && error) {
       return <div {...getStyles("mediaLoader")}>error fetching...</div>;
     }
     return <div {...getStyles("mediaLoader")}>loading...</div>;

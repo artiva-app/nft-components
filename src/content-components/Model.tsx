@@ -18,7 +18,7 @@ export const Model: ModelRenderer = {
     const type = request.media.content?.type ?? request.media.animation?.type;
     if (type?.startsWith("model/gltf")) {
       return request.renderingContext === "FULL"
-        ? RenderingPreference.PRIORITY
+        ? RenderingPreference.PREFERRED
         : RenderingPreference.NORMAL;
     }
     return RenderingPreference.INVALID;

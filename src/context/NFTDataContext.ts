@@ -1,21 +1,17 @@
 import { createContext } from "react";
 import type {
-  useNFTMetadataType,
   useNFTType,
+<<<<<<< HEAD
   useZNFTType,
 } from "@artiva/nft-hooks";
+=======
+} from "@zoralabs/nft-hooks";
+>>>>>>> 1a35d9ee22c6030e3a915fc8f7868dba2bfc8f90
 
-export type NFTDataContext = {
-  nft: useNFTType | useZNFTType;
-  metadata: useNFTMetadataType;
-};
+export type NFTDataContext = useNFTType;
 
-const DEFAULT_OBJECT = {
-  loading: true,
-  error: undefined,
-};
 
 export const NFTDataContext = createContext<NFTDataContext>({
-  nft: { ...DEFAULT_OBJECT, currencyLoaded: false },
-  metadata: { ...DEFAULT_OBJECT, metadata: undefined },
+  data: undefined,
+  currencyLoaded: false,
 });

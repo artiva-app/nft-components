@@ -16,15 +16,15 @@ export const MediaThumbnail = ({
   showInfo,
 }: GetContentDataType & StyleProps & { showInfo: boolean }) => {
   const {
-    nft: { data },
-    metadata: { metadata },
+    data
   } = useContext(NFTDataContext);
 
   const { getStyles, getString } = useMediaContext();
 
   const getContent = () => {
-    if (metadata && data) {
+    if (data?.metadata) {
       return {
+<<<<<<< HEAD
         media: (
           <MediaObject
             tokenId={data.nft.tokenId ?? undefined}
@@ -33,6 +33,10 @@ export const MediaThumbnail = ({
           />
         ),
         title: metadata.name,
+=======
+        media: <MediaObject isFullPage={false} {...getContentData(data)} />,
+        title: data.metadata?.name,
+>>>>>>> 1a35d9ee22c6030e3a915fc8f7868dba2bfc8f90
       };
     }
     return {
@@ -42,8 +46,8 @@ export const MediaThumbnail = ({
   };
 
   const { media, title } = getContent();
-  const hasCreator = data?.nft.creator;
-  const address = hasCreator ? data?.nft.creator : data?.nft.owner;
+  const hasCreator = data?.nft?.minted.address;
+  const address = hasCreator ? data?.nft?.minted.address : data?.nft?.owner?.address;
   return (
     <div className={className}>
       <div {...getStyles("cardMediaWrapper")}>{media}</div>

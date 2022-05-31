@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import {
   DataTransformers,
   useNFT,
@@ -19,22 +20,25 @@ export type NFTDataProviderProps = {
   edition?: boolean;
   useBetaIndexer?: boolean;
   refreshInterval?: number;
-  children: React.ReactNode;
-  initialData?:
-    | {
-        nft?: useNFTType["data"];
-        metadata?: useNFTMetadataType["metadata"];
-      }
-    | any;
-};
+=======
+import { useNFT } from "@zoralabs/nft-hooks";
 
-let isZNFT = (p: any): p is ZNFTDataType => p && !!p.zoraNFT;
-let isOpensea = (p: any): p is OpenseaNFTDataType => p && !!p.openseaInfo;
+import { NFTDataContext } from "./NFTDataContext";
+
+export type NFTDataProviderProps = {
+  id: string;
+  contract: string;
+>>>>>>> 1a35d9ee22c6030e3a915fc8f7868dba2bfc8f90
+  children: React.ReactNode;
+  options?: any;
+  marketOptions?: any;
+};
 
 export const NFTDataProvider = ({
   id,
   children,
   contract,
+<<<<<<< HEAD
   edition = false,
   refreshInterval,
   initialData,
@@ -100,10 +104,14 @@ export const NFTDataProvider = ({
         error: nft.error ? new Error(nft.error) : undefined,
       }
     : openseaMetadata || fetchedMetadata;
+=======
+  options = {},
+  marketOptions = {},
+}: NFTDataProviderProps) => {
+  const nft = useNFT(contract, id, options, marketOptions);
+>>>>>>> 1a35d9ee22c6030e3a915fc8f7868dba2bfc8f90
 
   return (
-    <NFTDataContext.Provider value={{ nft, metadata }}>
-      {children}
-    </NFTDataContext.Provider>
+    <NFTDataContext.Provider value={nft}>{children}</NFTDataContext.Provider>
   );
 };

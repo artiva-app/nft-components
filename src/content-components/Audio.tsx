@@ -220,7 +220,11 @@ export const Audio: RendererConfig = {
       request.media.animation?.type?.startsWith("audio")
     ) {
       return request.renderingContext === "FULL"
+<<<<<<< HEAD
         ? RenderingPreference.NORMAL
+=======
+        ? RenderingPreference.PREFERRED
+>>>>>>> 1a35d9ee22c6030e3a915fc8f7868dba2bfc8f90
         : RenderingPreference.LOW;
     }
     return RenderingPreference.INVALID;
